@@ -1,0 +1,42 @@
+1.create table department(deptid number(3) constraint dpk primary key,deptname varchar(6) constraint dnk check 
+(deptname='CSE' or deptname='EEE' or deptname='BBA' or deptname='ENG' or deptname='ACH'),budget number(6) default '0');
+
+2.create table course (crs_id number(4) constraint fkk2 primary key,crs_name varchar2(20) not null,deptid number(3),
+constraint dpk2 foreign key (crs_id) references department (deptid));
+
+3.create table student(s_id number(3) ,s_name varchar2(20),phone number(11),address varchar2(50),email varchar2(30),
+credit_completed number(2),cgpa number(3,2),deptno number(5),gender varchar2(6) );
+
+drop table student;
+
+4.Alter Table student
+Add constraint no_id primary key(s_id);
+
+5.Alter table student 
+Modify s_name varchar2(20) not null;
+
+6.Alter table student
+add unique (email);
+
+7.Alter Table student 
+add constraint no_deptid
+foreign key(s_id) references department(deptid); 
+
+8.alter table student
+modify  gender   constraint no_gender check(gender='M' or gender='F');
+
+9.alter table student disable constraint ikp;
+
+10.alter table student drop constraint no_gender;
+
+describe student;
+select * from student;
+
+11.SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE
+FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+WHERE TABLE_NAME='student';
+
+select no_id,s_id from student where student='student';
+
+12.alter table student enable constraint ikp;
+
